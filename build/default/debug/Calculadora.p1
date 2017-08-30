@@ -1650,7 +1650,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;Calculadora.c: 15: float b = 5;
 "16
 [v _resultado `f ~T0 @X0 1 e ]
-[; ;Calculadora.c: 16: float resultado;
+[v _suma `f ~T0 @X0 1 e ]
+[v _resta `f ~T0 @X0 1 e ]
+[v _multiplicacion `f ~T0 @X0 1 e ]
+[v _division `f ~T0 @X0 1 e ]
+[; ;Calculadora.c: 16: float resultado, suma, resta, multiplicacion, division;
 [v $root$_main `(v ~T0 @X0 0 e ]
 "19
 [v _main `(v ~T0 @X0 1 ef ]
@@ -1689,30 +1693,36 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;Calculadora.c: 31: printf("************************************\n");
 "31
 [e ( _printf :s 6C ]
-[; ;Calculadora.c: 36: if (PORTBbits.RB0 == 1){
+[; ;Calculadora.c: 33: suma = a+b;
+"33
+[e = _suma + _a _b ]
+[; ;Calculadora.c: 34: resta = a-b;
+"34
+[e = _resta - _a _b ]
+[; ;Calculadora.c: 35: multiplicacion = a*b;
+"35
+[e = _multiplicacion * _a _b ]
+[; ;Calculadora.c: 36: division = a/b;
 "36
+[e = _division / _a _b ]
+[; ;Calculadora.c: 38: if (PORTBbits.RB0 == 1){
+"38
 [e $ ! == -> . . _PORTBbits 0 0 `i -> 1 `i 148  ]
 {
-[; ;Calculadora.c: 37: resultado = a+b;
-"37
-[e = _resultado + _a _b ]
-[; ;Calculadora.c: 38: printf("El resultado de la Suma es: \n", "%f",resultado);
-"38
-[e ( _printf , , (. :s 7C :s 8C -> _resultado `d ]
+[; ;Calculadora.c: 39: printf("El resultado de la Suma es: %f\n", suma);
 "39
+[e ( _printf , (. :s 7C -> _suma `d ]
+"40
 }
 [e :U 148 ]
-[; ;Calculadora.c: 39: }
-[; ;Calculadora.c: 40: if (PORTBbits.RB1 == 1){
-"40
+[; ;Calculadora.c: 40: }
+[; ;Calculadora.c: 41: if (PORTBbits.RB1 == 1){
+"41
 [e $ ! == -> . . _PORTBbits 0 1 `i -> 1 `i 149  ]
 {
-[; ;Calculadora.c: 41: resultado = a-b;
-"41
-[e = _resultado - _a _b ]
-[; ;Calculadora.c: 42: printf("El resultado de la Resta es: \n", "%f",resultado);
+[; ;Calculadora.c: 42: printf("El resultado de la Resta es: %f\n", resta);
 "42
-[e ( _printf , , (. :s 9C :s 10C -> _resultado `d ]
+[e ( _printf , (. :s 8C -> _resta `d ]
 "44
 }
 [e :U 149 ]
@@ -1721,77 +1731,78 @@ Version 3.2 HI-TECH Software Intermediate Code
 "45
 [e $ ! == -> . . _PORTBbits 0 2 `i -> 1 `i 150  ]
 {
-[; ;Calculadora.c: 46: resultado = a*b;
+[; ;Calculadora.c: 46: printf("El resultado de la Multiplicacion es: %f\n", multiplicacion);
 "46
-[e = _resultado * _a _b ]
-[; ;Calculadora.c: 47: printf("El resultado de la Multiplicacion es: \n", "%f",resultado);
+[e ( _printf , (. :s 9C -> _multiplicacion `d ]
 "47
-[e ( _printf , , (. :s 11C :s 12C -> _resultado `d ]
-"48
 }
 [e :U 150 ]
-[; ;Calculadora.c: 48: }
-[; ;Calculadora.c: 49: if (PORTBbits.RB3 == 1){
-"49
+[; ;Calculadora.c: 47: }
+[; ;Calculadora.c: 48: if (PORTBbits.RB3 == 1){
+"48
 [e $ ! == -> . . _PORTBbits 0 3 `i -> 1 `i 151  ]
 {
-[; ;Calculadora.c: 50: if (b=0){
-"50
-[e $ ! != = _b -> -> 0 `i `f -> -> 0 `i `f 152  ]
+[; ;Calculadora.c: 49: if (b==0){
+"49
+[e $ ! == _b -> -> 0 `i `f 152  ]
 {
-[; ;Calculadora.c: 51: printf("Error, no es posible dividir entre 0");
+[; ;Calculadora.c: 50: printf("Error, no es posible dividir entre 0.\n");
+"50
+[e ( _printf :s 10C ]
 "51
-[e ( _printf :s 13C ]
-"52
 }
+[; ;Calculadora.c: 51: }
+[e $U 153  ]
+"52
 [e :U 152 ]
-[; ;Calculadora.c: 52: }
+[; ;Calculadora.c: 52: else {
+{
 [; ;Calculadora.c: 53: resultado = a/b;
 "53
 [e = _resultado / _a _b ]
-[; ;Calculadora.c: 54: printf("El resultado de la Division es: \n", "%f",resultado);
+[; ;Calculadora.c: 54: printf("El resultado de la Division es: %f\n", division);
 "54
-[e ( _printf , , (. :s 14C :s 15C -> _resultado `d ]
+[e ( _printf , (. :s 11C -> _division `d ]
 "55
 }
-[; ;Calculadora.c: 55: }
-[e $U 153  ]
-"56
-[e :U 151 ]
-[; ;Calculadora.c: 56: else {
-{
-[; ;Calculadora.c: 57: printf("Opcion Incorrecta\n ");
-"57
-[e ( _printf :s 16C ]
-"58
-}
 [e :U 153 ]
+"56
+}
+[; ;Calculadora.c: 55: }
+[; ;Calculadora.c: 56: }
+[e $U 154  ]
+"57
+[e :U 151 ]
+[; ;Calculadora.c: 57: else {
+{
+[; ;Calculadora.c: 58: printf("Opcion Incorrecta\n ");
+"58
+[e ( _printf :s 12C ]
 "59
+}
+[e :U 154 ]
+"60
 }
 [e :U 145 ]
 "23
 [e $U 146  ]
 [e :U 147 ]
-[; ;Calculadora.c: 58: }
 [; ;Calculadora.c: 59: }
 [; ;Calculadora.c: 60: }
-"60
+[; ;Calculadora.c: 61: }
+"61
 [e :UE 144 ]
 }
-[p f _printf 8765448 ]
-[a 8C 37 102 0 ]
-[a 10C 37 102 0 ]
-[a 12C 37 102 0 ]
-[a 15C 37 102 0 ]
-[a 13C 69 114 114 111 114 44 32 110 111 32 101 115 32 112 111 115 105 98 108 101 32 100 105 118 105 100 105 114 32 101 110 116 114 101 32 48 0 ]
-[a 16C 79 112 99 105 111 110 32 73 110 99 111 114 114 101 99 116 97 10 32 0 ]
+[p f _printf 8396800 ]
+[a 12C 79 112 99 105 111 110 32 73 110 99 111 114 114 101 99 116 97 10 32 0 ]
+[a 11C 69 108 32 114 101 115 117 108 116 97 100 111 32 100 101 32 108 97 32 68 105 118 105 115 105 111 110 32 101 115 58 32 37 102 10 0 ]
+[a 9C 69 108 32 114 101 115 117 108 116 97 100 111 32 100 101 32 108 97 32 77 117 108 116 105 112 108 105 99 97 99 105 111 110 32 101 115 58 32 37 102 10 0 ]
+[a 8C 69 108 32 114 101 115 117 108 116 97 100 111 32 100 101 32 108 97 32 82 101 115 116 97 32 101 115 58 32 37 102 10 0 ]
+[a 7C 69 108 32 114 101 115 117 108 116 97 100 111 32 100 101 32 108 97 32 83 117 109 97 32 101 115 58 32 37 102 10 0 ]
+[a 10C 69 114 114 111 114 44 32 110 111 32 101 115 32 112 111 115 105 98 108 101 32 100 105 118 105 100 105 114 32 101 110 116 114 101 32 48 46 10 0 ]
 [a 1C 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 10 0 ]
 [a 6C 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 10 0 ]
 [a 5C 42 42 42 42 42 42 32 32 32 32 32 52 46 32 68 105 118 105 115 105 111 110 32 32 32 42 42 42 42 42 42 42 42 42 10 0 ]
 [a 3C 42 42 42 42 42 42 32 32 32 32 32 32 50 46 32 82 101 115 116 97 32 32 32 32 32 42 42 42 42 42 42 42 42 42 10 0 ]
 [a 2C 42 42 42 42 42 42 32 32 32 32 32 32 49 46 32 83 117 109 97 32 32 32 32 32 32 42 42 42 42 42 42 42 42 42 10 0 ]
 [a 4C 42 42 42 42 42 32 32 51 46 32 77 117 108 116 105 112 108 105 99 97 99 105 111 110 32 32 42 42 42 42 42 42 42 42 10 0 ]
-[a 14C 69 108 32 114 101 115 117 108 116 97 100 111 32 100 101 32 108 97 32 68 105 118 105 115 105 111 110 32 101 115 58 32 10 0 ]
-[a 11C 69 108 32 114 101 115 117 108 116 97 100 111 32 100 101 32 108 97 32 77 117 108 116 105 112 108 105 99 97 99 105 111 110 32 101 115 58 32 10 0 ]
-[a 9C 69 108 32 114 101 115 117 108 116 97 100 111 32 100 101 32 108 97 32 82 101 115 116 97 32 101 115 58 32 10 0 ]
-[a 7C 69 108 32 114 101 115 117 108 116 97 100 111 32 100 101 32 108 97 32 83 117 109 97 32 101 115 58 32 10 0 ]
