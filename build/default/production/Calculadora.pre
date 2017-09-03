@@ -2219,7 +2219,7 @@ extern double round(double);
 
 # 14 "Calculadora.c"
 float a = 10;
-float b = 0;
+float b = 5;
 float resultado, suma, resta, multiplicacion, division;
 
 
@@ -2264,5 +2264,6 @@ printf("El resultado de la Division es: %f\n", division);
 else {
 printf("Opcion Incorrecta\n ");
 }
+
 }
 }

@@ -1645,9 +1645,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "15
 [v _b `f ~T0 @X0 1 e ]
 [i _b
--> -> 5 `i `f
+-> -U -> 30 `i `f
 ]
-[; ;Calculadora.c: 15: float b = 5;
+[; ;Calculadora.c: 15: float b = -30;
 "16
 [v _resultado `f ~T0 @X0 1 e ]
 [v _suma `f ~T0 @X0 1 e ]
@@ -1781,16 +1781,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 "59
 }
 [e :U 154 ]
-"60
+"61
 }
 [e :U 145 ]
 "23
 [e $U 146  ]
 [e :U 147 ]
 [; ;Calculadora.c: 59: }
-[; ;Calculadora.c: 60: }
 [; ;Calculadora.c: 61: }
-"61
+[; ;Calculadora.c: 62: }
+"62
 [e :UE 144 ]
 }
 [p f _printf 8396800 ]

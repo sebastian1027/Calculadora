@@ -19,7 +19,7 @@ float resultado, suma, resta, multiplicacion, division;
 void main(void) {
     
     TRISB = 0b11111111;
-    PORTB = 0;
+    PORTB = 0;    
     while (1) {      
         
     iniciar_uart();
@@ -57,5 +57,6 @@ void main(void) {
     else {
         printf("Opcion Incorrecta\n ");
     }
+    
    }
 }
