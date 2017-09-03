@@ -2219,8 +2219,9 @@ extern double round(double);
 
 # 14 "Calculadora.c"
 float a = 10;
-float b = -30;
-float resultado, suma, resta, multiplicacion, division;
+float b = 0;
+float suma, resta, multiplicacion, division;
+
 
 
 void main(void) {
@@ -2230,12 +2231,14 @@ PORTB = 0;
 while (1) {
 
 iniciar_uart();
-printf("************************************\n");
-printf("******      1. Suma      *********\n");
-printf("******      2. Resta     *********\n");
-printf("*****  3. Multiplicacion  ********\n");
-printf("******     4. Division   *********\n");
-printf("************************************\n");
+
+printf("****************************************\n");
+printf("******      1.(RB0). Suma      *********\n");
+printf("******      2.(RB1). Resta     *********\n");
+printf("*****  3.(RB2). Multiplicacion  ********\n");
+printf("******     4.(RB3). Division   *********\n");
+printf("****************************************\n");
+
 
 suma = a+b;
 resta = a-b;
@@ -2257,12 +2260,8 @@ if (b==0){
 printf("Error, no es posible dividir entre 0.\n");
 }
 else {
-resultado = a/b;
 printf("El resultado de la Division es: %f\n", division);
 }
-}
-else {
-printf("Opcion Incorrecta\n ");
 }
 
 }
