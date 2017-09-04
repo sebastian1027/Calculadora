@@ -1645,9 +1645,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "15
 [v _b `f ~T0 @X0 1 e ]
 [i _b
--> -> 0 `i `f
+-> -> 5 `i `f
 ]
-[; ;Calculadora.c: 15: float b = 0;
+[; ;Calculadora.c: 15: float b = 5;
 "16
 [v _suma `f ~T0 @X0 1 e ]
 [v _resta `f ~T0 @X0 1 e ]

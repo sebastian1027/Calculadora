@@ -12,7 +12,7 @@
 #include <math.h>
 //*********** variables a usar para la calculadora ************
 float a = 10; //damos el valor a la primera variable
-float b = 0;  //damos el segundo valor a la segunda Variable
+float b = 5;  //damos el segundo valor a la segunda Variable
 float suma, resta, multiplicacion, division; // nombre de las variables para efectuar las operaciones
 ///*************************************************************
 //int opcion;

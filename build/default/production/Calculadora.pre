@@ -2219,7 +2219,7 @@ extern double round(double);
 
 # 14 "Calculadora.c"
 float a = 10;
-float b = 0;
+float b = 5;
 float suma, resta, multiplicacion, division;
 
 
